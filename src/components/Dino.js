@@ -3,9 +3,9 @@ import "./Dino.css";
 
 function Dino() {
  const dinoRef = useRef();
-
   const cactusRef = useRef();
   const [score, setScore] = useState(0);
+  const [gameStarted, setGameStarted] = useState(false);
 
  
   const jump = () => {
