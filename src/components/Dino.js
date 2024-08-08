@@ -16,7 +16,6 @@ function Dino() {
       }, 300);
     }
   };
-
  
   useEffect(() => {
     const isAlive = setInterval(function () {
