@@ -9,7 +9,7 @@ function Dino() {
 
  
   const jump = () => {
-    if (!!dinoRef.current && dinoRef.current.classList != "jump") {
+    if (!!dinoRef.current && dinoRef.current.classList !== "jump") {
       dinoRef.current.classList.add("jump");
       setTimeout(function () {
         dinoRef.current.classList.remove("jump");
