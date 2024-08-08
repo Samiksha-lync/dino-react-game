@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/static/css/main.2a6cbb71.css",
-    "main.js": "/static/js/main.3e05349d.js",
-    "static/js/453.08981d41.chunk.js": "/static/js/453.08981d41.chunk.js",
-    "index.html": "/index.html",
-    "main.2a6cbb71.css.map": "/static/css/main.2a6cbb71.css.map",
-    "main.3e05349d.js.map": "/static/js/main.3e05349d.js.map",
-    "453.08981d41.chunk.js.map": "/static/js/453.08981d41.chunk.js.map"
+    "main.css": "/dino-react-game/static/css/main.2a6cbb71.css",
+    "main.js": "/dino-react-game/static/js/main.9f2bdfb2.js",
+    "static/js/453.08981d41.chunk.js": "/dino-react-game/static/js/453.08981d41.chunk.js",
+    "index.html": "/dino-react-game/index.html",
+    "main.2a6cbb71.css.map": "/dino-react-game/static/css/main.2a6cbb71.css.map",
+    "main.9f2bdfb2.js.map": "/dino-react-game/static/js/main.9f2bdfb2.js.map",
+    "453.08981d41.chunk.js.map": "/dino-react-game/static/js/453.08981d41.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2a6cbb71.css",
-    "static/js/main.3e05349d.js"
+    "static/js/main.9f2bdfb2.js"
   ]
 }
