@@ -35,13 +35,13 @@ function Dino() {
       );
 
       if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 140) {
-        alert(`Game Over! Your Score: ${score}`);
+        alert(`Game Over! Your Score: ${Math.floor(score)}`);
         setScore(0);
         setGameRunning(false);
         cactusRef.current.classList.remove("cactus-animation");
         cactusRef.current.style.left = "580px"; 
       } else {
-        setScore(prevScore => prevScore + 1);
+        setScore(prevScore => prevScore + 0.1);
       }
     }, 10);
 
@@ -74,7 +74,7 @@ function Dino() {
 
   return (
     <div className="game">
-      <div>Score: {score}</div>
+      <div>Score: {Math.floor(score)}</div>
       <div id="dino" ref={dinoRef}></div>
       <div id="cactus" ref={cactusRef}></div>
       {!gameRunning && (
