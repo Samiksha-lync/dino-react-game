@@ -2,58 +2,84 @@ import React, { useEffect, useRef, useState } from "react";
 import "./Dino.css";
 
 function Dino() {
- const dinoRef = useRef();
-  const cactusRef = useRef();
+  const dinoRef = useRef(null);
+  const cactusRef = useRef(null);
   const [score, setScore] = useState(0);
-  const [gameStarted, setGameStarted] = useState(false);
+  const [gameRunning, setGameRunning] = useState(false);
 
- 
   const jump = () => {
-    if (!!dinoRef.current && dinoRef.current.classList !== "jump") {
+    if (dinoRef.current && !dinoRef.current.classList.contains("jump")) {
       dinoRef.current.classList.add("jump");
-      setTimeout(function () {
-        dinoRef.current.classList.remove("jump");
+      setTimeout(() => {
+        if (dinoRef.current) {
+          dinoRef.current.classList.remove("jump");
+        }
       }, 300);
     }
   };
- 
+
   useEffect(() => {
-    const isAlive = setInterval(function () {
+    if (!gameRunning) return;
+
     
+    cactusRef.current.classList.add("cactus-animation");
+
+    const gameLoop = setInterval(() => {
       const dinoTop = parseInt(
-        getComputedStyle(dinoRef.current).getPropertyValue("top")
+        getComputedStyle(dinoRef.current).getPropertyValue("top"),
+        10
+      );
+      const cactusLeft = parseInt(
+        getComputedStyle(cactusRef.current).getPropertyValue("left"),
+        10
       );
 
-      let cactusLeft = parseInt(
-        getComputedStyle(cactusRef.current).getPropertyValue("left")
-      );
-
-        if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 140) {
-        alert("Game Over! Your Score : " + score);
+      if (cactusLeft < 40 && cactusLeft > 0 && dinoTop >= 140) {
+        alert(`Game Over! Your Score: ${score}`);
         setScore(0);
+        setGameRunning(false);
+        cactusRef.current.classList.remove("cactus-animation");
+        cactusRef.current.style.left = "580px"; 
       } else {
-        setScore(score + 1);
+        setScore(prevScore => prevScore + 1);
       }
     }, 10);
 
-    return () => clearInterval(isAlive);
-  });
+    return () => {
+      clearInterval(gameLoop);
+      cactusRef.current.classList.remove("cactus-animation");
+    };
+  }, [gameRunning, score]);
 
-  
   useEffect(() => {
-    document.addEventListener("keydown", jump);
-    document.addEventListener("touchstart", jump);
-    return () => {document.removeEventListener("keydown", jump);
-                  document.removeEventListener("touchstart",jump);
+    const handleKeyDown = (e) => {
+      if (!gameRunning) {
+        setGameRunning(true);
+        setScore(0);
+        cactusRef.current.style.left = "580px"; 
+      }
+      if (e.key === " ") {
+        jump();
+      }
     };
 
-  }, []);
+    document.addEventListener("keydown", handleKeyDown);
+    document.addEventListener("touchstart", jump);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+      document.removeEventListener("touchstart", jump);
+    };
+  }, [gameRunning]);
 
   return (
     <div className="game">
-      Score : {score}
+      <div>Score: {score}</div>
       <div id="dino" ref={dinoRef}></div>
       <div id="cactus" ref={cactusRef}></div>
+      {!gameRunning && (
+        <div className="start-message">Press any key to start the game</div>
+      )}
     </div>
   );
 }
