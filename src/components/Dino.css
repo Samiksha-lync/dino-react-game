@@ -33,7 +33,7 @@
     top: 150px;
   }
   30% {
-    top: 130px;
+    top: 110px;
   }
   50% {
     top: 60px;
@@ -57,7 +57,7 @@
 }
 
 .cactus-animation {
-  animation: block 2s infinite linear;
+  animation: block 1.7s infinite linear;
 }
 
 @keyframes block {
